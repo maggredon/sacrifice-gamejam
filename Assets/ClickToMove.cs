@@ -11,8 +11,7 @@ public class ClickToMove : MonoBehaviour
     [SerializeField] GameObject bot;
     private void Start()
     {
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        transform.position = bot.transform.position;
+        StartCoroutine(startFall());         
     }
 
     private void OnMouseDown()
