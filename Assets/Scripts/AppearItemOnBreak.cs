@@ -13,8 +13,11 @@ public class AppearItemOnBreak : MonoBehaviour
         {
             gameObjectToAppear.GetComponent<MeshRenderer>().enabled = true;
         }
-
-        GameObject particlesObject = Instantiate(destructionParticles);
+    }
+    public void DestroyObject()
+    { 
+        GameObject particlesObject = Instantiate(destructionParticles,transform.position,Quaternion.identity) as GameObject;
         particlesObject.GetComponent<ParticleSystem>().Play();
+        Destroy(gameObject);
     }
 }
