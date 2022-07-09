@@ -7,7 +7,7 @@ public class ClickToMove : MonoBehaviour
 {
     //true when the pin is down
     bool inLockedPos = true;
-
+    bool falling = false;
     [SerializeField] GameObject top;
     [SerializeField] GameObject bot;
     [SerializeField] GameObject clickCounter;
@@ -38,17 +38,22 @@ public class ClickToMove : MonoBehaviour
         }
         else
         {
-            //transform.position = bot.transform.position;
-            StartCoroutine(startFall());
+            if (!falling)
+            {
+                StartCoroutine(startFall());
+            }
+            
         }
         inLockedPos = !inLockedPos;
     }
 
     public IEnumerator startFall()
     {
+        falling = true;
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        falling = false;
     }
 
     public void TriggerFall()

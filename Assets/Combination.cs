@@ -19,14 +19,13 @@ public class Combination : MonoBehaviour
             }
         }
         //position in array defines pins that will be moved
-        affectedPins[0, 1] = 0;
-        affectedPins[0, 2] = 5;
-        affectedPins[0, 6] = 6;
-        affectedPins[2, 2] = 1;
-        affectedPins[2, 3] = 2;
-        affectedPins[3, 4] = 3;
-        affectedPins[5, 6] = 4;
-        Debug.Log(affectedPins[0, 1]);
+        affectedPins[0, 0] = 0;
+        affectedPins[0, 2] = 1;
+        affectedPins[2, 4] = 2;
+        affectedPins[0, 1] = 3;
+        affectedPins[4, 4] = 4;
+        affectedPins[4, 5] = 5;
+        affectedPins[6, 6] = 6;
     }
 
     public void GetArrayPoss(string number, out int pos1, out int pos2)
