@@ -5,13 +5,51 @@ using UnityEngine;
 public class Combination : MonoBehaviour
 {
     //get all of the pins
-    List<ClickToMove> pins = new List<ClickToMove>();
+
+    [SerializeField] GameObject[] pins;
+    //List<ClickToMove> pins = new List<ClickToMove>();
     int[,] affectedPins = new int[7, 7];
     void Start()
     {
-        foreach (ClickToMove pin in gameObject.GetComponentsInChildren<ClickToMove>())
+        for (int i = 0; i < 7; i++)
         {
-            pins.Add(pin);
+            for (int j = 0; j < 7; j++)
+            {
+                affectedPins[i, j] = -1;
+            }
         }
+        //position in array defines pins that will be moved
+        affectedPins[0, 1] = 0;
+        affectedPins[0, 2] = 5;
+        affectedPins[0, 6] = 6;
+        affectedPins[2, 2] = 1;
+        affectedPins[2, 3] = 2;
+        affectedPins[3, 4] = 3;
+        affectedPins[5, 6] = 4;
+        Debug.Log(affectedPins[0, 1]);
+    }
+
+    public void GetArrayPoss(string number, out int pos1, out int pos2)
+    {
+        int v1 = 0, v2 = 0;
+        for (int i = 0; i < 7; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                if(affectedPins[i, j].ToString() == number)
+                {
+                    v1 = i;
+                    v2 = j;
+                    Debug.Log(number + " " + v1 + " " + v2);
+                }
+            }
+        }
+        pos1 = v1;
+        pos2 = v2;
+    }
+
+    public GameObject[] GetListPins()
+    {
+        return pins;
     }
 }
