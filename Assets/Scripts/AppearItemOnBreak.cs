@@ -6,6 +6,8 @@ public class AppearItemOnBreak : MonoBehaviour
 {
     [SerializeField] GameObject gameObjectToAppear;
     [SerializeField] GameObject destructionParticles;
+    [SerializeField] GameObject source;
+    [SerializeField] AudioClip clip;
 
     private void OnDestroy()
     {

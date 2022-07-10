@@ -20,4 +20,21 @@ public class SoundRandomizer : MonoBehaviour
         source.pitch = Random.Range(1 - pitch, 1 + pitch);
         source.Play();
     }
+
+    public void RandomizeEffect(AudioClip clip)
+    {
+        source.clip = clip;
+        source.volume = Random.Range(1 - volChange, 1);
+        source.pitch = Random.Range(1 - pitch, 1 + pitch);
+        source.Play();
+    }
+
+    //public void LoadCLip(AudioClip sound)
+    //{
+    //    source.clip = sound;
+    //    source.volume = Random.Range(1 - volChange, 1);
+    //    source.pitch = Random.Range(1 - pitch, 1 + pitch);
+    //    source.Play();
+    //}
+
 }

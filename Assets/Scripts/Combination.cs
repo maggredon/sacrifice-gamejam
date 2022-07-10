@@ -39,7 +39,6 @@ public class Combination : MonoBehaviour
                 {
                     v1 = i;
                     v2 = j;
-                    Debug.Log(number + " " + v1 + " " + v2);
                 }
             }
         }

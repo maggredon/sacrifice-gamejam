@@ -21,7 +21,6 @@ public class PinScript : MonoBehaviour
         int i = 1;
         foreach (ClickToMove pin in pins)
         {
-            Debug.Log(i + "" + pin.GetInLockedPos());
             i++;
             if (pin.GetInLockedPos() == true)
             {
@@ -29,6 +28,7 @@ public class PinScript : MonoBehaviour
                 break;
             }
         }
+        Debug.Log("completed");
         return completed;
     }
 
