@@ -5,23 +5,41 @@ using UnityEngine;
 public class LightAdjust : MonoBehaviour
 {
     [SerializeField] Light worldLight;
-    Color red = new Color(1, 0, 0, 1);
-    Color baseColor = new Color(0, 0, 0, 1);
-    // Start is called before the first frame update
-    void Start()
-    {
-        baseColor = worldLight.color;
-    }
+    Color start = new Color(0.1f, 0.1f, 0.1f, 1);
+    Color brightRed = new Color(0.4f, 0, 0, 1);
+    Color darkRed = new Color(0.1f, 0, 0, 1);
+    Color lerpColor;
+    [SerializeField] GameObject[] triggers = new GameObject[3];
 
-    // Update is called once per frame
+    float intCap = 3, increase = 0.002f;
     void Update()
     {
-        if (worldLight.intensity < 100)
-        worldLight.intensity += 0.002f;
-        //worldLight.color = new Color(r = Mathf.Lerp(r,1,0.0008f), 0, b = Mathf.Lerp(b, 0, 0.0008f), 1f);
+        if (intCap < 5)
+            if (triggers[0].GetComponent<Triggered>().GetTriggered())
+            {
+                intCap = 5;
+                lerpColor = worldLight.color;
+            }
+        if (intCap < 8)
+            if (triggers[1].GetComponent<Triggered>().GetTriggered())
+            {
+                intCap = 8;
+                lerpColor = brightRed;
+            }
+        if (intCap < 14)
+        {
+            if (triggers[2].GetComponent<Triggered>().GetTriggered())
+            {
+                intCap = 700;
+                lerpColor = darkRed;
+                increase = 5;
+            }
+        }
+        if (worldLight.intensity < intCap)
+            worldLight.intensity += increase;
         if (worldLight.intensity > 3)
         {
-            worldLight.color = Color.Lerp(worldLight.color, red, 0.0007f);
+            worldLight.color = Color.Lerp(worldLight.color, lerpColor, 0.007f);
         }
     }
 
