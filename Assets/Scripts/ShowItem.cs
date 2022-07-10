@@ -9,6 +9,8 @@ public class ShowItem : MonoBehaviour
     [NonSerialized] public List<string> pickedUpItems = new List<string>();
     [SerializeField] GameObject axe;
     [SerializeField] GameObject crowbar;
+    [SerializeField] Canvas axeScreen;
+    [SerializeField] Canvas crowbarScreen;
     bool axeAvailable;
     bool crowbarAvailable;
     bool axeSelected;
@@ -41,9 +43,19 @@ public class ShowItem : MonoBehaviour
     public void AddItem(string name)
     {
         pickedUpItems.Add(name);
+        if (name == "Axe")
+        {
+            axeScreen.enabled = true;
+        }
+        if (name == "Crowbar")
+        {
+            crowbarScreen.enabled = true;
+        }
     }
     public void OnSelectCrowbar(InputValue value)
     {
+        if (crowbarScreen.enabled) crowbarScreen.enabled = false;
+
         if (crowbarAvailable)
         {
             crowbarSelected = true;
@@ -52,6 +64,8 @@ public class ShowItem : MonoBehaviour
     }
     public void OnSelectAxe(InputValue value)
     {
+        if (axeScreen.enabled) axeScreen.enabled = false;
+
         if (axeAvailable)
         {
             axeSelected = true;

@@ -6,12 +6,13 @@ TagManager:
   tags:
   - CinemachineTarget
   - Door
+  - PlayerBody
   - Pin
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerBody
   - Water
   - UI
   - 
