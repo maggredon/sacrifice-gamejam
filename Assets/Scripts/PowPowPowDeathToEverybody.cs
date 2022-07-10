@@ -6,6 +6,10 @@ public class PowPowPowDeathToEverybody : MonoBehaviour
 {
     public void KillEveryone()
     {
-        Debug.Log("Get some bitches");
+        SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+        subtitleController.ChoiceMade();
+
+        Crowbar crowbar = FindObjectOfType(typeof(Crowbar)) as Crowbar;
+        crowbar.DisableChoiceScreen();
     }
 }

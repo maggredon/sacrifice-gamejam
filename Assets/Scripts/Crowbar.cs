@@ -40,6 +40,8 @@ public class Crowbar : MonoBehaviour
             {
                 if (Vector3.Distance(hit.transform.position, Camera.main.transform.position) > 2.5f) return;
                 hit.transform.gameObject.GetComponent<PryDoor>().AttemptPrying();
+                SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+                subtitleController.AttemptPryingCage();
                 PlayCutscene();
             }
         }
@@ -50,12 +52,16 @@ public class Crowbar : MonoBehaviour
         camera1.enabled = true;
         camera2.enabled = true;
         cutscene.enabled = true;
+        SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+        subtitleController.EvilGuyWalksIn();
         StartCoroutine(ChoiceTimer());
     }
+
     private IEnumerator ChoiceTimer()
     {
-
-        yield return new WaitForSeconds(29f);
+        yield return new WaitForSeconds(9f);
+        SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+        subtitleController.MakeYourChoice();
         choiceScreen.enabled = true;
     }
     void LateUpdate()
@@ -65,5 +71,9 @@ public class Crowbar : MonoBehaviour
             Cursor.visible = (choiceScreen.gameObject.activeInHierarchy || choiceScreen.gameObject.activeInHierarchy);
             Cursor.lockState = CursorLockMode.Confined;
         }
+    }
+    public void DisableChoiceScreen()
+    {
+        choiceScreen.enabled = false;
     }
 }
