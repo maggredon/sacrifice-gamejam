@@ -9,15 +9,23 @@ public class SubtitleController : MonoBehaviour
     [SerializeField] TMP_Text subtitles;
     [SerializeField] AudioSource fatherSource;
     [SerializeField] AudioSource antagonistSource;
+    [SerializeField] AudioSource gunSource;
     [SerializeField] AudioClip gunshot;
+    [SerializeField] Canvas blackScreen;
+
     void Start()
     {
+        SpawnSounds();
+    }
+
+    public void SpawnSounds()
+    {
+
         PlayFatherSounds();
         subtitles.SetText("I have to get my kids out of this place...");
         StartCoroutine(RemoveSubtitlesAfterSeconds(2f));
         StartCoroutine(StopFatherTalk(2f));
     }
-
 
     public void EscapeCage()
     {
@@ -78,7 +86,6 @@ public class SubtitleController : MonoBehaviour
         subtitles.text = "And you would leave your kid so easily? You thought you actually had a choice?";
         StartCoroutine(RemoveSubtitlesAfterSeconds(4f));
         StartCoroutine(StopAntagonistTalk(2f));
-        //MAKE BLACK FADE TRANSITION
         GunshotSounds();
     }
 
@@ -140,12 +147,22 @@ public class SubtitleController : MonoBehaviour
     {
         //waits 2 seconds and then plays the gunshots
         yield return new WaitForSeconds(2f);
-        antagonistSource.PlayOneShot(gunshot);
-        yield return new WaitForSeconds(0.5f);
-        antagonistSource.Stop();
-        antagonistSource.PlayOneShot(gunshot);
-        yield return new WaitForSeconds(0.5f);
-        antagonistSource.Stop();
-        antagonistSource.PlayOneShot(gunshot);
+        blackScreen.enabled = true;
+        gunSource.PlayOneShot(gunshot);
+        yield return new WaitForSeconds(0.4f);
+        gunSource.Stop();
+        gunSource.PlayOneShot(gunshot);
+        yield return new WaitForSeconds(0.4f);
+        gunSource.Stop();
+        gunSource.PlayOneShot(gunshot);
+    }
+
+    private void LateUpdate()
+    {
+        if (blackScreen.enabled)
+        {
+            Cursor.visible = (blackScreen.gameObject.activeInHierarchy || blackScreen.gameObject.activeInHierarchy);
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 }
