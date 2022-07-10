@@ -46,10 +46,14 @@ public class ShowItem : MonoBehaviour
         if (name == "Axe")
         {
             axeScreen.enabled = true;
+            SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+            subtitleController.FindAxe();
         }
         if (name == "Crowbar")
         {
             crowbarScreen.enabled = true;
+            SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+            subtitleController.FindCrowbar();
         }
     }
     public void OnSelectCrowbar(InputValue value)

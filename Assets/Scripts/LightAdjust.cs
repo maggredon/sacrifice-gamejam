@@ -19,12 +19,16 @@ public class LightAdjust : MonoBehaviour
             {
                 intCap = 5;
                 lerpColor = worldLight.color;
+                SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+                subtitleController.EscapeCage();
             }
         if (intCap < 8)
             if (triggers[1].GetComponent<Triggered>().GetTriggered())
             {
                 intCap = 8;
                 lerpColor = brightRed;
+                SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
+                subtitleController.EnterSecondRoom();
             }
         if (intCap < 14)
         {
