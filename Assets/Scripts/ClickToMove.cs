@@ -25,8 +25,6 @@ public class ClickToMove : MonoBehaviour
             int pos1, pos2;
             transform.position = top.transform.position;
             clickCounter.GetComponent<Combination>().GetArrayPoss(transform.name, out pos1, out pos2);
-            //Debug.Log("number: " + transform.name + " 1: " + pos1 + " 2: " + pos2);
-            //might trigger chain reaction
             if (pos1.ToString() != transform.name)
             {
                 pins[pos1].GetComponent<ClickToMove>().TriggerFall();

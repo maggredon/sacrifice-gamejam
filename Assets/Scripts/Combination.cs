@@ -11,9 +11,9 @@ public class Combination : MonoBehaviour
     int[,] affectedPins = new int[7, 7];
     void Start()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < pins.Length; i++)
         {
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < pins.Length; j++)
             {
                 affectedPins[i, j] = -1;
             }

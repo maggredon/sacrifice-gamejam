@@ -18,17 +18,13 @@ public class PinScript : MonoBehaviour
     public bool Unlocked()
     {
         completed = true;
-        int i = 1;
-        foreach (ClickToMove pin in pins)
+        for (int i = 0; i < pins.Count; i++)
         {
-            i++;
-            if (pin.GetInLockedPos() == true)
+            if (pins[i].GetInLockedPos() == true)
             {
                 completed = false;
-                break;
             }
         }
-        Debug.Log("completed");
         return completed;
     }
 
