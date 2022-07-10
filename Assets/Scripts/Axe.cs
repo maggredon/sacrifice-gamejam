@@ -6,12 +6,18 @@ using UnityEngine.InputSystem;
 public class Axe : MonoBehaviour
 {
     [SerializeField] Animator axeAnimator;
+    private void Start()
+    {
+        GetComponent<BoxCollider>().enabled = false;
+    }
     public void UseItem()
     {
+        GetComponent<BoxCollider>().enabled = true;
         axeAnimator.SetBool("Attack", true);
     }
     public void StopAnimation()
     {
+        GetComponent<BoxCollider>().enabled = false;
         axeAnimator.SetBool("Attack", false);
     }
 
