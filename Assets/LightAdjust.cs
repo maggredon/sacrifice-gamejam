@@ -12,17 +12,26 @@ public class LightAdjust : MonoBehaviour
     {
         baseColor = worldLight.color;
     }
-
+    private bool finished = false;
     // Update is called once per frame
     void Update()
     {
-        if (worldLight.intensity < 100)
-        worldLight.intensity += 0.002f;
-        //worldLight.color = new Color(r = Mathf.Lerp(r,1,0.0008f), 0, b = Mathf.Lerp(b, 0, 0.0008f), 1f);
-        if (worldLight.intensity > 3)
+        if (!finished)
         {
-            worldLight.color = Color.Lerp(worldLight.color, red, 0.0007f);
+            if (worldLight.intensity < 100)
+                worldLight.intensity += 0.002f;
+            //worldLight.color = new Color(r = Mathf.Lerp(r,1,0.0008f), 0, b = Mathf.Lerp(b, 0, 0.0008f), 1f);
+            if (worldLight.intensity > 3)
+            {
+                worldLight.color = Color.Lerp(worldLight.color, red, 0.0007f);
+            }
         }
+    }
+
+    public void FadeToBlack()
+    {
+        worldLight.color = Color.black;
+        finished = true;
     }
 
 }
