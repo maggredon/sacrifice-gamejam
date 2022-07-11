@@ -13,6 +13,9 @@ public class Crowbar : MonoBehaviour
     [SerializeField] private PlayableDirector cutscene;
     [SerializeField] CinemachineVirtualCamera camera1;
     [SerializeField] CinemachineVirtualCamera camera2;
+
+    [SerializeField] Light lightAdjust;
+    //add music trigger here
     private void Update()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
@@ -42,6 +45,7 @@ public class Crowbar : MonoBehaviour
                 hit.transform.gameObject.GetComponent<PryDoor>().AttemptPrying();
                 SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
                 subtitleController.AttemptPryingCage();
+                lightAdjust.GetComponent<LightAdjust>().SetLastTrigger(true);
                 PlayCutscene();
             }
         }

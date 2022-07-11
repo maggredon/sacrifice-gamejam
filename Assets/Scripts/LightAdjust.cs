@@ -10,17 +10,23 @@ public class LightAdjust : MonoBehaviour
     Color darkRed = new Color(0.1f, 0, 0, 1);
     Color lerpColor;
     [SerializeField] GameObject[] triggers = new GameObject[3];
-
+    bool lastTrigger = false;
     float intCap = 3, increase = 0.002f;
+
+
+    [SerializeField] GameObject player;
     void Update()
     {
         if (intCap < 5)
-            if (triggers[0].GetComponent<Triggered>().GetTriggered())
+           // player.GetComponent<MusicPlayer>().SetVersion(1);
+
+        if (triggers[0].GetComponent<Triggered>().GetTriggered())
             {
                 intCap = 5;
                 lerpColor = worldLight.color;
                 SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
                 subtitleController.EscapeCage();
+                //player.GetComponent<MusicPlayer>().SetVersion(2);
             }
         if (intCap < 8)
             if (triggers[1].GetComponent<Triggered>().GetTriggered())
@@ -29,14 +35,16 @@ public class LightAdjust : MonoBehaviour
                 lerpColor = brightRed;
                 SubtitleController subtitleController = FindObjectOfType(typeof(SubtitleController)) as SubtitleController;
                 subtitleController.EnterSecondRoom();
+                //player.GetComponent<MusicPlayer>().SetVersion(3);
             }
         if (intCap < 14)
         {
-            if (triggers[2].GetComponent<Triggered>().GetTriggered())
+            if (lastTrigger)
             {
-                intCap = 700;
+                intCap = 100;
                 lerpColor = darkRed;
                 increase = 5;
+                //player.GetComponent<MusicPlayer>().SetVersion(4);
             }
         }
         if (worldLight.intensity < intCap)
@@ -45,6 +53,11 @@ public class LightAdjust : MonoBehaviour
         {
             worldLight.color = Color.Lerp(worldLight.color, lerpColor, 0.007f);
         }
+    }
+
+    public void SetLastTrigger(bool value)
+    {
+        lastTrigger = value;
     }
 
 }

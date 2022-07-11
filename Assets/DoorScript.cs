@@ -51,6 +51,7 @@ public class DoorScript : MonoBehaviour
             Destroy(spotLight);
             hit.transform.Rotate(new Vector3(0, 80, 0));
             Destroy(lockPick);
+            Destroy(GetComponent<DoorScript>());
             finished = true;
             Cursor.visible = false;
         }
