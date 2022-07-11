@@ -15,6 +15,11 @@ public class PinScript : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log(Unlocked());
+    }
+
     public bool Unlocked()
     {
         completed = true;
